@@ -70,10 +70,21 @@
 								</div>
 								<div class="media-body">
 									<h4 class="media-heading">
-										${items.key.name} <small> ${items.key.price} <spring:message
-												code="currency.symbol" /></small>
+										${items.key.name} <small>x ${items.value} = <fmt:formatNumber
+												type="number" maxFractionDigits="2"
+												value="${items.key.price * items.value}" />
+											<spring:message code="currency.symbol" /></small>
 									</h4>
 									<p>${items.key.description}</p>
+								</div>
+								<div class="media-right media-top">
+
+									<a href="newOrder/increaseItem?reference=${items.key.reference}">
+										<span class="glyphicon glyphicon-plus-sign"></span>
+									</a>
+									<a href="newOrder/decreaseItem?reference=${items.key.reference}">
+										<span class="glyphicon glyphicon-minus-sign"></span>
+									</a>
 								</div>
 							</div>
 						</c:forEach>

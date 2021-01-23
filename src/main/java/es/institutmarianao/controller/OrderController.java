@@ -75,6 +75,7 @@ public class OrderController {
 		return modelAndView;
 	}
 
+	@GetMapping("/newOrder/clearItems")
 	public String newOrderClearItems(@SessionAttribute("order") Order order) throws ServletException, IOException {
 
 		order.clearItems();
@@ -91,11 +92,11 @@ public class OrderController {
 		return "redirect:/users/orders/newOrder";
 	}
 	
-	public String newOrderDecreaseItem(@SessionAttribute("order") Order order
-	/* TODO - Get the reference parameter */) throws ServletException, IOException {
-
-		// TODO - Get the item related to the reference passed as parameter
-		// TODO - Decrease item quantity
+	@GetMapping("newOrder/decreaseItem")
+	public String newOrderDecreaseItem(@SessionAttribute("order") Order order,
+			@RequestParam("reference") String reference) throws ServletException, IOException {
+		Item item = itemService.get(reference);
+		order.decreaseQuantity(item);
 
 		return "redirect:/users/orders/newOrder";
 	}
