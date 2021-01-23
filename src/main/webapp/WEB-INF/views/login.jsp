@@ -6,7 +6,8 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,34 @@
 <body>
 	<div class="container">
 		<jsp:include page="sections/header.jsp" />
-		//TODO: LOGIN FORM	
-		<%-- TODO Login form here --%>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Si us plau, proporcioni les seves dades</h3>
+					</div>
+					<div class="panel-body">
+						<c:if test="${not empty error}">
+							<div class="alert alert-danger">Credencials incorrectes</div>
+						</c:if>
+						<form action="<c:url value= "/j_spring_security_check"> </c:url>"
+							method="post">
+							<fieldset>
+								<div class="form-group">
+									<input class="form-control" placeholder="Usuari"
+										name='j_username' type="text"> 
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Contrasenya"
+										name='j_password' type="password">
+								</div>
+								<input class="btn btn-lg btn-success btn-block" type="submit"
+									value="Connectar">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>

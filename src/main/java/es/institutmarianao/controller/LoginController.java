@@ -28,16 +28,18 @@ public class LoginController {
 		return "redirect:/users/orders";
 	}
 
-	@GetMapping
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
 
+	@GetMapping("/loginfailed")
 	public String loginFailed(Model model) {
 		model.addAttribute("error", "true");
 		return "login";
 	}
 
+	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) throws ServletException {
 		HttpSession session = request.getSession(false);
 		if (session != null) {

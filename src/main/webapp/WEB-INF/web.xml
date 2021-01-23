@@ -6,7 +6,7 @@
 	<display-name>Orders</display-name>
 
 	<!-- TODO Add Spring and spring configuration -->
-	
+
 
 	<!-- TODO Add security context configuration -->
 	<servlet>
@@ -15,7 +15,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/security-context.xml
+				/WEB-INF/spring/DispatcherServlet-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -24,17 +24,23 @@
 	<servlet-mapping>
 		<servlet-name>servlet</servlet-name>
 		<url-pattern>/</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
 	</servlet-mapping>
-	
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/security-context.xml</param-value>
+	</context-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/DispatcherServlet-servlet.xml</param-value>
-	</context-param>
-
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
